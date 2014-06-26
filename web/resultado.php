@@ -6,13 +6,8 @@
 <title>Computación Paralela</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 
-<link href="owl.carousel.css" rel="stylesheet" type="text/css" />
-<link href="owl.theme.css" rel="stylesheet" type="text/css" />
-<link href="owl.transitions.css" rel="stylesheet" type="text/css" />
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="./javascript/tools.js"></script>
-<script src="./javascript/owl.carousel.js"></script>
 
 <!-- para los graficos -->
 <script src="http://code.highcharts.com/highcharts.js"></script>
@@ -62,39 +57,15 @@ if (isset($_FILES['archivo']) && !empty($_FILES['archivo']['name']) && !empty($_
 					info = jQuery.parseJSON(data);
 					$("#ajax_loading").hide();
 
-					$('#Resultado').html(book(info.nhojas));
-					
-					for(var i=0; i<info.sheets.length ;i++){
-						for(var j=0; j<info.sheets[i].length; j++){
-							for(var k=0; k<60 ; k++){
-								$('#letra_'+i+'_'+j+'_'+k).html(info.sheets[i][j][k].toUpperCase());
-							}
-						}
-					}
-
-					// cambia las clases
-					changeClass(info.match);
-
+					$('#Resultado').html(drawTable(info.match));
 					// agrega las gráficas de desempeño en la parte inferior de las hojas
-					
 					addPlot(info);
-					
-					addScatter(info);
-					
+					addScatter(info);					
 					addPerformance(info);
-					
-					
-					$(".libro").owlCarousel({
-					        stopOnHover : true,
-					        singleItem : true,
-					        transitionStyle:"fade",
-					        pagination: true,
-					        paginationNumbers: true,
-					        scrollPerPage: false,
-					        autoHeight: true,
-					        navigation: true,
-					        items: 5,
-     				 	});
+					// agrega las gráficas de desempeño en la parte inferior de las hojas
+					addPlot(info);
+					addScatter(info);
+					addPerformance(info);
 		},
 		});
 	});
