@@ -33,6 +33,5 @@ match = sum(match, [])
 match = comm.gather(match, root=master)
 
 if rank == master:
-	match = sum(match, [])
     bible = clearMatch(match, sheets,ncol,words)
     print json.dumps(bible)
